@@ -13,5 +13,6 @@ from sunpy.net import jsoc as _
 from sunpy.net import vso as _
 from sunpy.net.fido_factory import Fido
 from sunpy.net.scraper import Scraper
+from fake_client import ExampleClient as _    
 
 __all__ = ["Fido", "Scraper"]
