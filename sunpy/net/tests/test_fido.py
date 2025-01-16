@@ -80,7 +80,7 @@ def test_online_fido(query):
 @mock.patch("sunpy.net.vso.vso.VSOClient.search", side_effect=ConnectionError('VSO is down'))
 def test_fido_client_error(vso_search):
     with pytest.raises(ConnectionError):
-        q = Fido.search(a.Time('2012/01/01', '2012/01/01'), a.Instrument.soon) # noqa: F841
+        Fido.search(a.Time('2012/01/01', '2012/01/01'), a.Instrument.soon)
 
 
 def check_response(query, unifiedresp):
