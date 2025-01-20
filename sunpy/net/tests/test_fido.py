@@ -82,12 +82,7 @@ def test_fido_client_error(vso_search):
     results = Fido.search(a.Time("2016/10/01", "2016/10/02"), a.Instrument.aia)
     assert len(results.errors) > 0
     assert isinstance(results.errors["VSOClient"], ConnectionError)
-
-    flag = False
-    if("Error: ConnectionError" in str(results)):
-        flag = True
-
-    assert flag
+    assert "Error: ConnectionError" in str(results)
 
 
 def check_response(query, unifiedresp):
