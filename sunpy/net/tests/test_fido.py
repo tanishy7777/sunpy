@@ -65,8 +65,8 @@ def test_offline_fido(query):
 
 
 @pytest.mark.remote_data
-# Until we get more mocked, we can't really do this to online clients.
-# TODO: Hypothesis this again
+# # Until we get more mocked, we can't really do this to online clients.
+# # TODO: Hypothesis this again
 @pytest.mark.parametrize("query", [
     (a.Instrument.eve & a.Time('2014/7/7', '2014/7/14') & a.Level.zero),
     (a.Instrument.rhessi & a.Time('2014/7/7', '2014/7/14')),
@@ -82,6 +82,13 @@ def test_fido_client_error(vso_search):
     results = Fido.search(a.Time("2016/10/01", "2016/10/02"), a.Instrument.aia)
     assert len(results.errors) > 0
     assert isinstance(results.errors["VSOClient"], ConnectionError)
+
+    flag = False
+    if("Error: ConnectionError" in str(results)):
+        flag = True
+
+    assert flag
+
 
 def check_response(query, unifiedresp):
     """
